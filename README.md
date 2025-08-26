@@ -4,6 +4,10 @@ This repo houses the analysis and reproduction of fig 3 of Schaefer, Douglas. A.
 
 ## Contents ##
 -  *data* : all the csv's contained in this folder
+  -  QuebradaCuenca1-Bisley.csv
+  -  QuebradaCuenca2-Bisley.csv
+  -  QuebradaCuenca3-Bisley.csv
+  -  RioMameyesPuenteRoto.csv
 -  *docs* : all documents used in the final analysis
 -  *figs* : figures 
 -  *scratch* : scratch work that got me to the final docs
@@ -15,3 +19,5 @@ This is not my data. This data was downloaded from EDI following all proper proc
 Peter Vitale the main contributor. 
 
 ## References ## 
+-  Paper : <https://doi.org/10.1017/s0266467400001358>
+-  Data: <https://doi.org/10.6073/PASTA/F31349BEBDC304F758718F4798D25458>
