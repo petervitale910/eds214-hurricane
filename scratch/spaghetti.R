@@ -35,11 +35,16 @@ average_subset_allsite <- subset_allsite %>%
 
 
 average_allsite <- allsitedf %>% 
+  arrange(sample_date) %>% 
   rename("potassium" = k) %>% 
   mutate(no3_n_mean = rollmean(no3_n, k=9, fill = NA),
          potassium_mean = rollmean(potassium, k=9, fill = NA),
          nh4_mean = rollmean(nh4_n, k=9, fill = NA),
          mg_mean = rollmean(mg, k=9, fill = NA),
          ca_mean = rollmean(ca, k=9, fill = NA)
-  )
-  
+  ) %>% 
+  na.omit() %>% 
+  filter(year(sample_date) <= 1998) %>% 
+  select(-c(potassium, nh4_n, no3_n, mg, ca)) 
+
+
