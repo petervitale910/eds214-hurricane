@@ -39,34 +39,59 @@ average_allsite <- allsitedf %>%
          mg_mean = rollmean(mg, k=9, fill = NA),
          ca_mean = rollmean(ca, k=9, fill = NA)
   ) %>% 
-  filter(year(sample_date) <= 1994) %>% 
+  filter(year(sample_date) <= 1994,
+         year(sample_date) >= 1988) #%>% 
   select(-c(potassium, nh4_n, no3_n, mg, ca))
 
 k <- ggplot(average_allsite, aes(x = sample_date, 
                                  y = potassium_mean))+
               geom_line(aes(color = sample_id))+
-  theme_few()
+  theme_few()+
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank())
+
+#contra dict
 
 no3 <- ggplot(average_allsite, aes(x = sample_date, 
                                  y = no3_n_mean))+
   geom_line(aes(color = sample_id))+
-  theme_few()
+  theme_few()+
+  theme(axis.text.x = element_blank(), legend.position = "none",
+        axis.title.x = element_blank())
+
 
 nh4 <- ggplot(average_allsite, aes(x = sample_date, 
                                    y = nh4_mean))+
   geom_line(aes(color = sample_id))+
-  theme_few()
+  theme_few()+
+  theme(legend.position = "none")
 
-mg <-  ggplot(average_allsite, aes(x = sample_date, 
+
+mg <- ggplot(average_allsite, aes(x = sample_date, 
                                    y = mg_mean))+
   geom_line(aes(color = sample_id))+
-  theme(axis.text.x = element_blank(), legend.position = "none")+
-  theme_few()
+  theme_few()+
+  theme(axis.text.x = element_blank(), legend.position = "none",
+        axis.title.x = element_blank())
+  
 
 ca <- ggplot(average_allsite, aes(x = sample_date, 
                                   y = ca_mean))+
   geom_line(aes(color = sample_id))+
-  theme_few()
+  theme_few()+
+  theme(axis.text.x = element_blank(), legend.position = "none",
+        axis.title.x = element_blank())
 
-k/no3/nh4/mg/ca
+  k/no3/mg/ca/nh4
+
+week(average_allsite$sample_date)
+count()day(i) - week(4) & day(i)+ week(4)
+
+q1quick <- average_allsite %>% 
+  filter(sample_id == "Q1")
+
+week(q1quick$sample_date)
+
+for (i in 1:nrow((q1quick$sample_date))){}
   
+#if a number in week(q1quick$sample_data) = i-1 then average with previous number 
