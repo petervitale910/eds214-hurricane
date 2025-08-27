@@ -17,6 +17,9 @@ mprdat <- read_csv(here::here("data","RioMameyesPuenteRoto.csv")) %>%
   select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) 
 
 
+
+mprdat <- df_moving_average(df = mprdat, dates = sample_date,chem_vec = c("k", "nh4_n", "no3_n", "mg", "ca"))
+
 allsitedf <- rbind(mprdat, q1dat, q2dat, q3dat)
 
 subset_allsite <- allsitedf %>% 
@@ -85,14 +88,12 @@ ca <- ggplot(average_allsite, aes(x = sample_date,
   k/no3/mg/ca/nh4
 
 week(average_allsite$sample_date)
-count()day(i) - week(4) & day(i)+ week(4)
+#count() day(i) - week(4) & day(i)+ week(4)
 
 q1quick <- average_allsite %>% 
   filter(sample_id == "Q1")
 
-week(q1quick$sample_date)
-
-for (i in 1:nrow((q1quick$sample_date))){}
+source(here::here("scratch","problem-solving.R"))
   
 #if a number in week(q1quick$sample_data) = i-1 then average with previous number 
 
