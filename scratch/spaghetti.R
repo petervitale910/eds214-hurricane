@@ -95,3 +95,4 @@ week(q1quick$sample_date)
 for (i in 1:nrow((q1quick$sample_date))){}
   
 #if a number in week(q1quick$sample_data) = i-1 then average with previous number 
+

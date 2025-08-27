@@ -4,37 +4,23 @@ format: html
 editor: visual
 ---
 
-Ok so first things first we need a bit of setup 
+Ok so first things first we need a bit of setup
 
 ```{r}
 #Lets install some packages
 pacman::p_load("tidyverse", "here", "janitor")
 ```
 
-Ok so some things i know i need :
-I know im only looking at 4 sites :
-1. PRM
-2. BQ1
-3. BQ2
-4. BQ3
+Ok so some things i know i need : I know im only looking at 4 sites : 1. PRM 2. BQ1 3. BQ2 4. BQ3
 
-AND im looking at 4 variables 
+AND im looking at 4 variables
 
-1. K (potassium)
-2. NO3 (nitrate)
-3. Mg (magnesium)
-4. Ca (calcium) 
-5. NH4 (amonia)
+1.  K (potassium)
+2.  NO3 (nitrate)
+3.  Mg (magnesium)
+4.  Ca (calcium)
+5.  NH4 (amonia)
 
-for graphing i would like to :
-1. Isolate variables
-2. Merge data 
-3. clean the data remembering "9-wk moving averages" 
-  - dates -> 1988 - 1994
-  - pivot for facet 
-4. Exploratory graphs 
-5. edit scales on facet 
+for graphing i would like to : 1. Isolate variables 2. Merge data 3. clean the data remembering "9-wk moving averages" - dates -\> 1988 - 1994 - pivot for facet 4. Exploratory graphs 5. edit scales on facet
 
-moving averages - A moving average is a statistical tool used to smooth out data over a set period by creating a constantly updated average. In finance, it helps traders and analysts identify trends by filtering out short-term fluctuations, or "noise," from a time series, like stock prices or sales figures. 
-
-
+moving averages - A moving average is a statistical tool used to smooth out data over a set period by creating a constantly updated average. In finance, it helps traders and analysts identify trends by filtering out short-term fluctuations, or "noise," from a time series, like stock prices or sales figures.
