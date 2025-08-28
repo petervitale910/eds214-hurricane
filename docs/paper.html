@@ -99,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="background" class="level4">
 <h4 class="anchored" data-anchor-id="background">Background</h4>
 <p>We have data from four river sites Quebrada Cuenca 1-3 (q1, q2, q3) and Rio Mameyes Puente Roto (mpr). We are trying to recreate this figure from Schaefer et al.&nbsp;(2000).</p>
+<p><img src="Schaefer_etal_2020_fig3.png" class="img-fluid" width="281"></p>
 <p>I’m going to start by going into the library of all the packages I will be using. I’m using the pacman package to load all of my packages, this will install the packages if you do not currently have them installed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"tidyverse"</span>, <span class="st">"janitor"</span>, <span class="st">"here"</span>, <span class="st">"ggthemes"</span>, <span class="st">"patchwork"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -106,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data" class="level4">
 <h4 class="anchored" data-anchor-id="data">Data</h4>
-<p>First I read in the csv’s ad well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in.</p>
+<p>First I read in the csv’s as well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Quebrada Cuenca 1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q1dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"QuebradaCuenca1-Bisley.csv"</span>)) <span class="sc">%&gt;%</span> </span>
