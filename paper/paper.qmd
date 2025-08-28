@@ -4,18 +4,21 @@ format: html
 editor: visual
 ---
 
-#### Background ####
-We have data from four river sites Quebrada Cuenca 1-3 (q1, q2, q3) and Rio Mameyes Puente Roto (mpr). We are trying to recreate this figure from Schaefer et al. (2000). 
+#### Background
 
-I'm going to start by going into the library of all the packages I will be using. I'm using the pacman package to load all of my packages, this will install the packages if you do not currently have them installed. 
+We have data from four river sites Quebrada Cuenca 1-3 (q1, q2, q3) and Rio Mameyes Puente Roto (mpr). We are trying to recreate this figure from Schaefer et al. (2000).
+
+I'm going to start by going into the library of all the packages I will be using. I'm using the pacman package to load all of my packages, this will install the packages if you do not currently have them installed.
+
 ```{r}
 pacman::p_load("tidyverse", "janitor", "here", "ggthemes", "patchwork")
 ```
 
-#### Data ####
-First I read in the csv's as well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in. 
+#### Data
 
-```{r} 
+First I read in the csv's as well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in.
+
+```{r}
 #| warning: FALSE
 
 #Quebrada Cuenca 1
@@ -47,11 +50,12 @@ mprdat <- read_csv(here::here("data","RioMameyesPuenteRoto.csv")) %>%
          year(sample_date) >= 1988)
 ```
 
-#### Methods ####
-In the paper they calculated the rolling average, an average taken over a set of data points to smooth out the lines. To apply my own rolling average i am using two functions: 
+#### Methods
+
+In the paper they calculated the rolling average, an average taken over a set of data points to smooth out the lines. To apply my own rolling average i am using two functions:
 
 1.  {moving_average} : calculates the moving average for one nutrient in the data frame
-2.  {df_moving_average} : calculates the moving average for multiple nutrients in a data frame 
+2.  {df_moving_average} : calculates the moving average for multiple nutrients in a data frame
 
 We need to source these from my *R* folder
 
@@ -67,7 +71,7 @@ Both functions are documented so you are able to find out more information about
 ?df_moving_average
 ```
 
-So now we apply that function to my four data frames. 
+So now we apply that function to my four data frames.
 
 ```{r}
 mprdat <- df_moving_average(df = mprdat, 
@@ -88,11 +92,12 @@ q3dat <- df_moving_average(df = q3dat,
 ```
 
 Now all the rolling averages have been calculated and placed in their own columns in our datasets, but we only want one dataframe to graph. So lets merge them using {rbind}
+
 ```{r}
 all_river_data <- rbind(mprdat, q1dat, q2dat, q3dat)
 ```
 
-Ok now lets make some ggplots for each. We need to stack each nutrient so I'm going to be making 5 individual graphs for each of the nutrients 
+Ok now lets make some ggplots for each. We need to stack each nutrient so I'm going to be making 5 individual graphs for each of the nutrients
 
 ```{r}
 #| code-fold: true
@@ -146,10 +151,11 @@ ca_plot <- ggplot(all_river_data, aes(x = sample_date,
 
 Let's check in the Results section for the final graph
 
-#### Results ####
+#### Results
+
 Here I am using functionality from the {patchwork} package to stack all the nutrient graphs
+
 ```{r}
 #| warning: FALSE
  k_plot/no3_plot/mg_plot/ca_plot/nh4_plot
 ```
-
