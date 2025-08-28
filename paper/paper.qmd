@@ -13,7 +13,7 @@ pacman::p_load("tidyverse", "janitor", "here", "ggthemes", "patchwork")
 ```
 
 #### Data ####
-First I read in the csv's ad well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in. 
+First I read in the csv's as well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in. 
 
 ```{r} 
 #| warning: FALSE
