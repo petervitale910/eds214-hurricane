@@ -1,15 +1,3 @@
-#' Title
-#'
-#' @param focal_date 
-#' @param dates 
-#' @param conc 
-#' @param win_size_wks 
-#'
-#' @returns
-#' @export
-#'
-#' @examples
-
 
 
 moving_average <- function(focal_date, dates, conc, win_size_wks) {
@@ -24,18 +12,6 @@ moving_average <- function(focal_date, dates, conc, win_size_wks) {
   return(result)
 
 }
-
-
-#' Title
-#'
-#' @param df 
-#' @param dates 
-#' @param chem_vec 
-#'
-#' @returns
-#' @export
-#'
-#' @examples
 
 
 df_moving_average <- function(df, dates, chem_vec){
