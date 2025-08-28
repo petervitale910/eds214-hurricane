@@ -8,8 +8,11 @@ editor: visual
 
 We have data from four river sites Quebrada Cuenca 1-3 (q1, q2, q3) and Rio Mameyes Puente Roto (mpr). We are trying to recreate this figure from Schaefer et al. (2000).
 
+<<<<<<< HEAD
 ![](Schaefer_etal_2020_fig3.png){fig-align="center" width="281"}
 
+=======
+>>>>>>> 49201062a3153bd3fe39ddc3eb6551b5ebc4eec1
 I'm going to start by going into the library of all the packages I will be using. I'm using the pacman package to load all of my packages, this will install the packages if you do not currently have them installed.
 
 ```{r}
