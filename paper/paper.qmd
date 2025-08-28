@@ -1,0 +1,157 @@
+---
+title: "paper.qmd"
+format: html
+editor: visual
+project:
+  outputdir: ../docs
+---
+
+#### Background ####
+We have data from four river sites Quebrada Cuenca 1-3 (q1, q2, q3) and Rio Mameyes Puente Roto (mpr). We are trying to recreate this figure from Schaefer et al. (2000). 
+
+I'm going to start by going into the library of all the packages I will be using. I'm using the pacman package to load all of my packages, this will install the packages if you do not currently have them installed. 
+```{r}
+pacman::p_load("tidyverse", "janitor", "here", "ggthemes", "patchwork")
+```
+
+#### Data ####
+First I read in the csv's ad well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in. 
+
+```{r} 
+#| warning: FALSE
+
+#Quebrada Cuenca 1
+q1dat <- read_csv(here::here("data","QuebradaCuenca1-Bisley.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) <= 1994,
+         year(sample_date) >= 1988)
+
+#Quebrada Cuenca 2
+q2dat <- read_csv(here::here("data","QuebradaCuenca2-Bisley.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) <= 1994,
+         year(sample_date) >= 1988)
+
+#Quebrada Cuenca 3
+q3dat <- read_csv(here::here("data","QuebradaCuenca3-Bisley.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) <= 1994,
+         year(sample_date) >= 1988)
+
+#Rio Mayemes Puente Roto 
+mprdat <- read_csv(here::here("data","RioMameyesPuenteRoto.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) <= 1994,
+         year(sample_date) >= 1988)
+```
+
+#### Methods ####
+In the paper they calculated the rolling average, an average taken over a set of data points to smooth out the lines. To apply my own rolling average i am using two functions: 
+
+1.  {moving_average} : calculates the moving average for one nutrient in the data frame
+2.  {df_moving_average} : calculates the moving average for multiple nutrients in a data frame 
+
+We need to source these from my *R* folder
+
+```{r}
+source(here::here("scratch","problem-solving.R"))
+```
+
+Both functions are documented so you are able to find out more information about the inputs by doing
+
+```{r}
+?moving_average
+
+?df_moving_average
+```
+
+So now we apply that function to my four data frames. 
+
+```{r}
+mprdat <- df_moving_average(df = mprdat, 
+                            dates = sample_date,
+                            chem_vec = c("k", "nh4_n", "no3_n", "mg", "ca"))
+
+q1dat <- df_moving_average(df = q1dat, 
+                           dates = sample_date,
+                           chem_vec = c("k", "nh4_n", "no3_n", "mg", "ca"))
+
+q2dat <- df_moving_average(df = q2dat, 
+                           dates = sample_date,
+                           chem_vec = c("k", "nh4_n", "no3_n", "mg", "ca"))
+
+q3dat <- df_moving_average(df = q3dat, 
+                           dates = sample_date,
+                           chem_vec = c("k", "nh4_n", "no3_n", "mg", "ca"))
+```
+
+Now all the rolling averages have been calculated and placed in their own columns in our datasets, but we only want one dataframe to graph. So lets merge them using {rbind}
+```{r}
+all_river_data <- rbind(mprdat, q1dat, q2dat, q3dat)
+```
+
+Ok now lets make some ggplots for each. We need to stack each nutrient so I'm going to be making 5 individual graphs for each of the nutrients 
+
+```{r}
+#| code-fold: true
+#| message: false
+k_plot <- ggplot(all_river_data, aes(x = sample_date, 
+                                 y = k_rolling_average))+
+              geom_line(aes(color = sample_id))+
+  theme_few()+
+  labs(y = "K (mg/l)")+
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position = "none")
+
+
+no3_plot <- ggplot(all_river_data, aes(x = sample_date, 
+                                 y = no3_n_rolling_average))+
+  geom_line(aes(color = sample_id))+
+  theme_few()+
+  labs(y = "NO3-N (ug/l)",
+       color = "River")+
+  theme(axis.text.x = element_blank(),
+        axis.title.x = element_blank())
+
+
+nh4_plot <- ggplot(all_river_data, aes(x = sample_date, 
+                                   y = nh4_n_rolling_average))+
+  geom_line(aes(color = sample_id))+
+  labs(y = "NH4-N (ug/l)",
+       x = "Sample Date")+
+  theme_few()+
+  theme(legend.position = "none")
+
+
+mg_plot <- ggplot(all_river_data, aes(x = sample_date, 
+                                   y = mg_rolling_average))+
+  geom_line(aes(color = sample_id))+
+  labs (y = "Mg (mg/l)")+
+  theme_few()+
+  theme(axis.text.x = element_blank(), legend.position = "none",
+        axis.title.x = element_blank())
+  
+
+ca_plot <- ggplot(all_river_data, aes(x = sample_date, 
+                                  y = ca_rolling_average))+
+  geom_line(aes(color = sample_id))+
+  labs(y = "Ca (mg/l)")+
+  theme_few()+
+  theme(axis.text.x = element_blank(), legend.position = "none",
+        axis.title.x = element_blank())
+```
+
+Let's check in the Results section for the final graph
+
+#### Results ####
+Here I am using functionality from the {patchwork} package to stack all the nutrient graphs
+```{r}
+#| warning: FALSE
+ k_plot/no3_plot/mg_plot/ca_plot/nh4_plot
+```
+
