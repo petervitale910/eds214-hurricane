@@ -1,0 +1,36 @@
+---
+title: "paper.qmd"
+format: html
+editor: visual
+---
+
+#### Background ####
+We have data from four river sites Quebrada Cuenca 1-3 (q1, q2, q3) and Rio Mameyes Puente Roto (mpr). We are trying to recreate this figure from 
+
+
+#### Data ####
+First I read in the csv's ad well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. 
+
+```{r}
+q1dat <- read_csv(here::here("data","QuebradaCuenca1-Bisley.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) 
+
+q2dat <- read_csv(here::here("data","QuebradaCuenca2-Bisley.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) 
+
+q3dat <- read_csv(here::here("data","QuebradaCuenca3-Bisley.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) 
+
+mprdat <- read_csv(here::here("data","RioMameyesPuenteRoto.csv")) %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) 
+```
+
+
+#### Methods ####
+
+
+#### Results ####

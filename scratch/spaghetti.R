@@ -22,15 +22,8 @@ mprdat <- df_moving_average(df = mprdat, dates = sample_date,chem_vec = c("k", "
 
 allsitedf <- rbind(mprdat, q1dat, q2dat, q3dat)
 
-subset_allsite <- allsitedf %>% 
-  group_by(sample_date) %>% 
-  ungroup()
 
-average_subset_allsite <- subset_allsite %>%
-  #arrange(sample_date) %>% 
-  slice_head(n=27) %>% 
-  #group_by(sample_date) %>% 
-  mutate(no3_n_ave = rollmean(no3_n, k=9, fill = NA)) 
+
 
 
 average_allsite <- allsitedf %>% 
