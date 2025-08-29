@@ -17,7 +17,7 @@ In this workflow I load packages, then I import my cleaned data, applied a rolli
     -   RioMameyesPuenteRoto.csv
 -   *docs* : HTML of final paper
 -   *outputs*: Intermediate Outputs
--   *figs* : Figures
+-   *figs* : Figuresgit a
 -   *scratch* : Scratch work that got me to the final docs
 -   *R* : Functions I used in my final product
 -   *Paper*: Final Paper QMD

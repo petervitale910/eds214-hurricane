@@ -42,10 +42,11 @@ In the paper they calculated the rolling average, an average taken over a set of
 2.  {df_moving_average} : calculates the moving average for multiple nutrients in a data frame
 
 We need to source these from my *R* folder found here
-['R/moving-average.R'](https://github.com/petervitale910/eds214-hurricane/blob/main/R/moving-average.R)
+['R'](https://github.com/petervitale910/eds214-hurricane/blob/main/R)
 
 ```{r}
 source(here::here("R","moving-average.R"))
+source(here::here("R","df-moving-average.R"))
 ```
 
 Both functions are documented so you are able to find out more information about the inputs by going into the R folder and looking at the file moving-average.R

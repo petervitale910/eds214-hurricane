@@ -129,9 +129,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>{moving_average} : calculates the moving average for one nutrient in the data frame</li>
 <li>{df_moving_average} : calculates the moving average for multiple nutrients in a data frame</li>
 </ol>
-<p>We need to source these from my <em>R</em> folder found here <a href="https://github.com/petervitale910/eds214-hurricane/blob/main/R/moving-average.R">‘R/moving-average.R’</a></p>
+<p>We need to source these from my <em>R</em> folder found here <a href="https://github.com/petervitale910/eds214-hurricane/blob/main/R">‘R’</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R"</span>,<span class="st">"moving-average.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R"</span>,<span class="st">"moving-average.R"</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R"</span>,<span class="st">"df-moving-average.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Both functions are documented so you are able to find out more information about the inputs by going into the R folder and looking at the file moving-average.R</p>
 <p>So now we apply that function to my four data frames.</p>
