@@ -1,5 +1,13 @@
 All the data import and wrangling is housed in this script.
+First we need to load some packages 
 
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+Then download the data
 ```{r}
 #Quebrada Cuenca 1
 #Im importing the raw data
