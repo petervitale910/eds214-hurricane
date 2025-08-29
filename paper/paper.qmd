@@ -10,7 +10,7 @@ We have data from four river sites Quebrada Cuenca 1-3 (q1, q2, q3) and Rio Mame
 
 ![](Schaefer_etal_2020_fig3.png){fig-align="center" width="281"}
 
-I'm going to start by going into the library of all the packages I will be using. I'm using the pacman package to load all of my packages, this will install the packages if you do not currently have them installed.
+In the study they were examining the response in water chemistry following the disturbance of hurricane hugo. I'm going to start by going into the library of all the packages I will be using. I'm using the pacman package to load all of my packages, this will install the packages if you do not currently have them installed.
 
 ```{r}
 #| message: FALSE
@@ -179,7 +179,8 @@ Here I am using functionality from the {patchwork} package to stack all the nutr
 ```{r}
 #| warning: FALSE
 total_plot+plot_annotation(
-  subtitle = "Response to Hurricane disturbance in Loquillo Mountain chemestry after Hurricane Hugo (1989)"
+  subtitle = "Response to Hurricane disturbance in Loquillo Mountain chemestry after Hurricane Hugo (1989)",
+  caption = "Dotted line represents when the Hurricane reached Puerto Rico"
   
 )
 ```
