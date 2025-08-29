@@ -111,35 +111,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data" class="level4">
 <h4 class="anchored" data-anchor-id="data">Data</h4>
-<p>First I read in the csv’s as well as immediately clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in.</p>
+<p>First I read in the csv’s as well as clean the names and filter for the columns (nutrients) figure 3 focused on. As well as the years we are interested in. This was done in <a href=""></a>. Now I call the variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Quebrada Cuenca 1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q1dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"QuebradaCuenca1-Bisley.csv"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"sample_id"</span>, <span class="st">"sample_date"</span>, <span class="st">"k"</span>,<span class="st">"nh4_n"</span>,<span class="st">"no3_n"</span>,<span class="st">"mg"</span>,<span class="st">"ca"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(sample_date) <span class="sc">&lt;=</span> <span class="dv">1994</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="fu">year</span>(sample_date) <span class="sc">&gt;=</span> <span class="dv">1988</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Quebrada Cuenca 2</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>q2dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"QuebradaCuenca2-Bisley.csv"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"sample_id"</span>, <span class="st">"sample_date"</span>, <span class="st">"k"</span>,<span class="st">"nh4_n"</span>,<span class="st">"no3_n"</span>,<span class="st">"mg"</span>,<span class="st">"ca"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(sample_date) <span class="sc">&lt;=</span> <span class="dv">1994</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>         <span class="fu">year</span>(sample_date) <span class="sc">&gt;=</span> <span class="dv">1988</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Quebrada Cuenca 3</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>q3dat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"QuebradaCuenca3-Bisley.csv"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"sample_id"</span>, <span class="st">"sample_date"</span>, <span class="st">"k"</span>,<span class="st">"nh4_n"</span>,<span class="st">"no3_n"</span>,<span class="st">"mg"</span>,<span class="st">"ca"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(sample_date) <span class="sc">&lt;=</span> <span class="dv">1994</span>,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>         <span class="fu">year</span>(sample_date) <span class="sc">&gt;=</span> <span class="dv">1988</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#Rio Mayemes Puente Roto </span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>mprdat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>,<span class="st">"RioMameyesPuenteRoto.csv"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(<span class="st">"sample_id"</span>, <span class="st">"sample_date"</span>, <span class="st">"k"</span>,<span class="st">"nh4_n"</span>,<span class="st">"no3_n"</span>,<span class="st">"mg"</span>,<span class="st">"ca"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">year</span>(sample_date) <span class="sc">&lt;=</span> <span class="dv">1994</span>,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>         <span class="fu">year</span>(sample_date) <span class="sc">&gt;=</span> <span class="dv">1988</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>q1_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>,<span class="st">"q1_dat.rds"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>q2_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>,<span class="st">"q2_dat.rds"</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>q3_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>,<span class="st">"q2_dat.rds"</span>))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>mpr_data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>,<span class="st">"mpr_dat.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="methods" class="level4">
@@ -156,25 +136,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Both functions are documented so you are able to find out more information about the inputs by going into the R folder and looking at the file moving-average.R</p>
 <p>So now we apply that function to my four data frames.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mprdat <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> mprdat, </span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mpr_data <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> mpr_data, </span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">dates =</span> sample_date,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">chem_vec =</span> <span class="fu">c</span>(<span class="st">"k"</span>, <span class="st">"nh4_n"</span>, <span class="st">"no3_n"</span>, <span class="st">"mg"</span>, <span class="st">"ca"</span>))</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>q1dat <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> q1dat, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>q1_data <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> q1_data, </span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">dates =</span> sample_date,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">chem_vec =</span> <span class="fu">c</span>(<span class="st">"k"</span>, <span class="st">"nh4_n"</span>, <span class="st">"no3_n"</span>, <span class="st">"mg"</span>, <span class="st">"ca"</span>))</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>q2dat <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> q2dat, </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>q2_data <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> q2_data, </span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                           <span class="at">dates =</span> sample_date,</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">chem_vec =</span> <span class="fu">c</span>(<span class="st">"k"</span>, <span class="st">"nh4_n"</span>, <span class="st">"no3_n"</span>, <span class="st">"mg"</span>, <span class="st">"ca"</span>))</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>q3dat <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> q3dat, </span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>q3_data <span class="ot">&lt;-</span> <span class="fu">df_moving_average</span>(<span class="at">df =</span> q3_data, </span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                           <span class="at">dates =</span> sample_date,</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                           <span class="at">chem_vec =</span> <span class="fu">c</span>(<span class="st">"k"</span>, <span class="st">"nh4_n"</span>, <span class="st">"no3_n"</span>, <span class="st">"mg"</span>, <span class="st">"ca"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now all the rolling averages have been calculated and placed in their own columns in our datasets, but we only want one dataframe to graph. So lets merge them using {rbind}</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>all_river_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mprdat, q1dat, q2dat, q3dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>all_river_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mpr_data, q1_data, q2_data, q3_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ok now lets make some ggplots for each. We need to stack each nutrient so I’m going to be making 5 individual graphs for each of the nutrients</p>
 <div class="cell">

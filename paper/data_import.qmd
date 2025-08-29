@@ -1,0 +1,50 @@
+All the data import and wrangling is housed in this script.
+
+```{r}
+#Quebrada Cuenca 1
+#Im importing the raw data
+q1_raw <- read_csv(here::here("data","QuebradaCuenca1-Bisley.csv")) 
+
+#and then transforming it
+q1_dat <- q1_raw%>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) >= 1988,
+         year(sample_date) <= 1994)
+
+write_rds(q1_dat,
+          here::here("outputs","q1_dat.rds"))
+#Quebrada Cuenca 2
+q2_raw <- read_csv(here::here("data","QuebradaCuenca2-Bisley.csv")) 
+
+q2_dat <- q2_raw %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) >= 1988,
+         year(sample_date) <= 1994)
+
+write_rds(q2_dat,
+          here::here("outputs","q2_dat.rds"))
+
+#Quebrada Cuenca 3
+q3_raw <- read_csv(here::here("data","QuebradaCuenca3-Bisley.csv")) 
+q3_dat <- q3_raw %>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) >= 1988,
+         year(sample_date) <= 1994)
+  
+write_rds(q3_dat,
+          here::here("outputs","q3_dat.rds"))
+
+#Rio Mameyes Puente Roto
+mpr_raw <- read_csv(here::here("data","RioMameyesPuenteRoto.csv")) 
+mpr_dat <- mpr_raw%>% 
+  clean_names() %>% 
+  select(c("sample_id", "sample_date", "k","nh4_n","no3_n","mg","ca")) %>% 
+  filter(year(sample_date) >= 1988,
+         year(sample_date) <= 1994)
+
+write_rds(mpr_dat,
+          here::here("outputs","mpr_dat.rds"))
+```
